@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration, Login, and Logout</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    input[type="text"], input[type="password"], input[type="button"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    input[type="button"] {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+    }
+    input[type="button"]:hover {
+        background-color: #45a049;
+    }
+    #logoutBtn {
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div id="registration">
+        <h2>Registration</h2>
+        <input type="text" id="regUsername" placeholder="Username">
+        <input type="password" id="regPassword" placeholder="Password">
+        <input type="button" value="Register" onclick="register()">
+    </div>
+    <div id="login" style="display:none;">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <input type="button" value="Login" onclick="login()">
+        <input type="button" value="Logout" id="logoutBtn" onclick="logout()">
+    </div>
+</div>
+
+<script>
+    // Dummy user credentials
+    let users = [];
+
+    function register() {
+        const regUsername = document.getElementById("regUsername").value;
+        const regPassword = document.getElementById("regPassword").value;
+
+        if (regUsername.trim() === '' || regPassword.trim() === '') {
+            alert("Please enter both username and password.");
+            return;
+        }
+
+        if (users.find(user => user.username === regUsername)) {
+            alert("Username already exists. Please choose a different one.");
+            return;
+        }
+
+        // Add new user to the users array
+        users.push({ username: regUsername, password: regPassword });
+
+        // Show login form after registration
+        document.getElementById("registration").style.display = "none";
+        document.getElementById("login").style.display = "block";
+        alert("Registration successful! Please login.");
+    }
+
+    function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        const user = users.find(user => user.username === username && user.password === password);
+
+        if (user) {
+            // Successful login
+            alert("Login successful!");
+            document.getElementById("username").value = "";
+            document.getElementById("password").value = "";
+            window.location.assign("personal.html")
+            showLogoutButton();
+        } else {
+            // Failed login
+            alert("Invalid username or password. Please try again.");
+        }
+    }
+
+    function logout() {
+        // Log user out
+        hideLogoutButton();
+    }
+
+    function showLogoutButton() {
+        document.getElementById("logoutBtn").style.display = "block";
+    }
+
+    function hideLogoutButton() {
+        document.getElementById("logoutBtn").style.display = "none";
+    }
+</script>
+
+</body>
+</html>

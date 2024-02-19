@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login and Logout</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    input[type="text"], input[type="password"], input[type="button"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    input[type="button"] {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+    }
+    input[type="button"]:hover {
+        background-color: #45a049;
+    }
+    #logoutBtn {
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <input type="button" value="Login" onclick="login()">
+    <input type="button" value="Logout" id="logoutBtn" onclick="logout()">
+</div>
+
+<script>
+    // Dummy user credentials
+    const validUsername = "abhisheksingh@gmail.com";
+    const validPassword = "123456";
+
+    function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        if (username === validUsername && password === validPassword) {
+            // Successful login
+            alert("Login successful!");
+            document.getElementById("username").value = "abhisheksingh@gmail.com";
+            document.getElementById("password").value = "123456";
+            showLogoutButton();
+            window.location.assign(personal.html)
+        } else {
+            // Failed login
+            alert("Invalid username or password. Please try again.");
+        }
+    }
+
+    function logout() {
+        // Log user out
+        hideLogoutButton();
+    }
+
+    function showLogoutButton() {
+        document.getElementById("logoutBtn").style.display = "block";
+    }
+
+    function hideLogoutButton() {
+        document.getElementById("logoutBtn").style.display = "none";
+    }
+</script>
+
+</body>
+</html>

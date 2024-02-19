@@ -1,0 +1,14 @@
+body {
+    background-color: red;
+    color: white;
+}
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+    background-color: darkred;
+nav hover {
+        color: rgb(149, 149, 196);
+        font-size: 1.1rem;
+    }
